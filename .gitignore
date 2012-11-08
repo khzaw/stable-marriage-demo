@@ -1,0 +1,20 @@
+## General ignore ##
+Thumbs.db 
+Desktop.ini
+!.gitignore
+*~
+.directory
+.*.sw[a-z]
+*.un~
+Session.vim
+## General ignore end ##
+
+**/.DS_Store
+nbproject
+manifest.mf
+build.xml
+
+.project
+.settings
+.idea/*
+

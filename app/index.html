@@ -1,0 +1,340 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="Description"
+        content="This is a demo for NUS CS1231 Stable Marriage Problem Project by group 30">
+        <title>NUS CS1231 Project Demo - Group 30</title>
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/docs.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+        <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+        <base href="/">
+
+        ﻿<!--[if lte IE 8]>
+        <script> document.createElement('tabs');
+            document.createElement('pane');
+            document.createElement('ng-pluralize');
+            </script>
+            <![endif]-->
+            <script>
+                /*!
+                 * $script.js Async loader & dependency manager
+                 * https://github.com/ded/script.js
+                 * (c) Dustin Diaz, Jacob Thornton 2011
+                 * License: MIT
+                 */
+            (function(a,b){typeof module!="undefined"?module.exports=b():typeof define=="function"&&define.amd?define(a,b):this[a]=b()})("$script",function(){function q(a,b,c){for(c=0,j=a.length;c<j;++c)if(!b(a[c]))return k;return 1}function r(a,b){q(a,function(a){return!b(a)})}function s(a,b,i){function o(a){return a.call?a():d[a]}function p(){if(!--n){d[m]=1,k&&k();for(var a in f)q(a.split("|"),o)&&!r(f[a],o)&&(f[a]=[])}}a=a[l]?a:[a];var j=b&&b.call,k=j?b:i,m=j?a.join(""):b,n=a.length;return setTimeout(function(){r(a,function(a){if(h[a])return m&&(e[m]=1),h[a]==2&&p();h[a]=1,m&&(e[m]=1),t(!c.test(a)&&g?g+a+".js":a,p)})},0),s}function t(c,d){var e=a.createElement("script"),f=k;e.onload=e.onerror=e[p]=function(){if(e[n]&&!/^c|loade/.test(e[n])||f)return;e.onload=e[p]=null,f=1,h[c]=2,d()},e.async=1,e.src=c,b.insertBefore(e,b.firstChild)}var a=document,b=a.getElementsByTagName("head")[0],c=/^https?:\/\//,d={},e={},f={},g,h={},i="string",k=!1,l="push",m="DOMContentLoaded",n="readyState",o="addEventListener",p="onreadystatechange";return!a[n]&&a[o]&&(a[o](m,function u(){a.removeEventListener(m,u,k),a[n]="complete"},k),a[n]="loading"),s.get=t,s.order=function(a,b,c){(function d(e){e=a.shift(),a.length?s(e,d):s(e,b,c)})()},s.path=function(a){g=a},s.ready=function(a,b,c){a=a[l]?a:[a];var e=[];return!r(a,function(a){d[a]||e[l](a)})&&q(a,function(a){return d[a]})?b():!function(a){f[a]=f[a]||[],f[a][l](b),c&&c(e)}(a.join("|")),s},s})
+
+            $script('http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', function() {
+                    $script('js/bootstrap.min.js', function() {
+                        $().dropdown();
+                        bootstrap();
+                        });
+                    $script('google-code-prettify/prettify.min.js', bootstrap);
+                    $script('js/homepage.js', bootstrap);
+                    $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js', bootstrap);
+                    $script('http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.min.js', bootstrap);
+                    $script('http://code.angularjs.org/1.0.2/i18n/angular-locale_sk.js', function() {
+                        angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+                        bootstrap();
+                        });
+                    $script('http://code.angularjs.org/1.0.2/i18n/angular-locale_en-us.js', function() {
+                        angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+                        bootstrap();
+                        });
+                    });
+
+function bootstrap() {
+    if (window.prettyPrint && window.$ && $.fn.popover && angular.bootstrap &&
+            hasModule('ngLocal.sk') && hasModule('ngLocal.us') && hasModule('homepage') && hasModule('ngResource')) {
+        $(function(){
+                angular.bootstrap(document, ['homepage', 'ngLocal.us']);
+                });
+    }
+}
+
+function hasModule(moduleName) {
+    try {
+        return angular.module(moduleName);
+    } catch (e) {
+        return false;
+    }
+}
+</script>
+<script>
+    /*
+       AngularJS v1.0.2
+       (c) 2010-2012 Google, Inc. http://angularjs.org
+       License: MIT
+     */
+(function(i){'use strict';function d(c,b,e){return c[b]||(c[b]=e())}return d(d(i,"angular",Object),"module",function(){var c={};return function(b,e,f){e&&c.hasOwnProperty(b)&&(c[b]=null);return d(c,b,function(){function a(a,b,d){return function(){c[d||"push"]([a,b,arguments]);return g}}if(!e)throw Error("No module: "+b);var c=[],d=[],h=a("$injector","invoke"),g={_invokeQueue:c,_runBlocks:d,requires:e,name:b,provider:a("$provide","provider"),factory:a("$provide","factory"),service:a("$provide","service"),
+                                                                                                                                                                                                    value:a("$provide","value"),constant:a("$provide","constant","unshift"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:h,run:function(a){d.push(a);return this}};f&&h(f);return g})}})})(window);
+</script>
+</head>
+<body ng-controller="DownloadCtrl">
+    <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+    chromium.org/developers/how-tos/chrome-frame-getting-started -->
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <header class="header">
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <h3><a class="brand" href="#">Stable Marriage Problem</a></h3>
+                    <div class="pull-right" style="padding-top:13px;"><h5>CS1231 Group 30</h5></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div role="main" class="container">
+
+        <div class="row" style="padding-top: 80px;">
+            <div class="span12">
+                <div class="hero-unit" style="height: 400px;">
+                    <div class="center">
+                        <h1>Presentation on YouTube</h1>
+                    </div>
+                    <div class="center">
+                        Add video later.
+                        <!--<iframe width="400" height="240" src="http://www.youtube.com/embed/ZooxI3YOfYM?list=PLuh1Yu_jvFplCdnSBqMIb5QXngV7eEqf9&amp;hl=en_US" frameborder="0" allowfullscreen></iframe>-->
+                    </div>
+                    <span class="spacer"></span>
+                    <div class="center">
+                        <a class="btn btn-large" href="documents/project30.pdf" target="blank"><i class="icon-file">  Project Synopsis  </i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class=" row">
+            <div class="span12">
+                <div app-run="smp.html" class="center"></div>
+            </div>
+            <div class="span12 app-source" app-source="smp.html smp.js" annotate="smp.annotation">
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&nbsp; © 2012 by NUS CS1231 Project Group 30</p>
+                <p>&nbsp; Speical Thanks - <a href="http://angularjs.org/" target="_blank">AngularJS</a></p>
+            </div>
+        </footer>
+        <!-- JavaScript at the bottom for fast page loading -->
+        <!-- end scripts -->
+    <div class="smp-code">
+        <!-- ============== SMP ============== -->
+        <script id="smp.js">
+        function SMPCtrl($scope) {
+
+            $scope.maxNumber = 0;
+            $scope.isInited = false;
+            $scope.boys = [];
+            $scope.girls = [];
+            $scope.boysOutput = "Empty ...";
+            $scope.girlsOutput = "Empty ...";
+            $scope.btnCss = "btn btn-primary";
+            $scope.steps = [];
+
+            $scope.getOutput = function() {
+                $scope.boysOutput = "<table class=\"table\"><thead><tr><th>Name</th><th>Rankings</th><th>Engaged Girl</th></tr></thead><tbody>";
+                $scope.girlsOutput = "<table class=\"table\"><thead><tr><th>Name</th><th>Rankings</th><th>Engaged Boy</th></tr></thead><tbody>";
+                var i, boys = $scope.boys, girls = $scope.girls;
+                for (i = 0; i < boys.length; i++) {
+                    var boyEngaged = boys[i].engaged === -1 ? "None" : "Girl " + boys[i].engaged;
+                    var girlEngaged = girls[i].engaged === -1 ? "None" : "Boy " + girls[i].engaged;
+                    var rankOutput = "";
+                    for (var j = 0; j < boys[i].proposed.length; j++) {
+                        if (boys[i].proposed[j] === true) {
+                            rankOutput += "<del>" + boys[i].ranking[j] + "</del>";
+                        }
+                        else {
+                            rankOutput += boys[i].ranking[j];
+                        }
+                    }
+                    $scope.boysOutput += "<tr class=\"info\"><td>"+boys[i].name+"</td><td>"+rankOutput+"</td><td>"+boyEngaged+"</td></tr>";
+                    $scope.girlsOutput += "<tr class=\"info\"><td>"+girls[i].name+"</td><td>"+girls[i].ranking+"</td><td>"+girlEngaged+"</td></tr>";
+                }
+                $scope.boysOutput += "</tbody></table>";
+                $scope.girlsOutput += "</tbody></table>";
+            }
+
+            $scope.init = function() {
+                if (!$scope.isInited) {
+                    $scope.isInited = true;
+                    $scope.btnCss = "btn btn-primary disabled";
+                    var rankings = [];
+                    var proposed = [];
+                    $scope.maxNumber = $scope.maxNumber === 0 ? 1 : $scope.maxNumber;
+                    var max = $scope.maxNumber;
+                    var shuffle = function(o) {
+                        for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+                        return o;
+                    }
+                    var i;
+                    for (i = 1; i <= max; i++) {
+                        rankings.push(i);
+                        proposed.push(false);
+                    }
+                    for (i = 1; i <= max; i++) {
+                        rankings = shuffle(rankings).slice(0);
+                        $scope.boys.push({name:"Boy "+i, ranking:rankings.slice(0), engaged:-1, proposed:proposed.slice(0)});
+                        rankings = shuffle(rankings).slice(0);
+                        $scope.girls.push({name:"Girl "+i, ranking:rankings.slice(0), engaged:-1, proposals:[]});
+                    }
+                    $scope.steps.push("Setting up " + max + " pair of boys and girls.");
+                    $scope.getOutput();
+                }
+            }
+
+            $scope.reset = function() {
+                $scope.isInited = false;
+                $scope.maxNumber = 0;
+                $scope.boys = [];
+                $scope.girls = [];
+                $scope.btnCss = "btn btn-primary";
+                $scope.steps = [];
+            }
+
+            $scope.isDone = function() {
+                for (var i = 0; i < $scope.boys.length; i++) {
+                    if ($scope.boys[i].engaged === -1) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            $scope.nextStep = function() {
+                var getEngaged = function(rankings, proposals, current) {
+                    var result = {proposalIndex:-1,proposalNum:-1, currentIndex:-1, currentNum:-1};
+                    foundValue:
+                    for (var i = 0; i < rankings.length; i++) {
+                        for (var j = 0; j < proposals.length; j++) {
+                            if (rankings[i] === proposals[j]) {
+                                result.proposalNum = proposals[j];
+                                result.proposalIndex = j;
+                                break foundValue;
+                            }
+                        }
+                    }
+                    if (current !== -1) {
+                        for (var i = 0; i < rankings.length; i++) {
+                            if (current === rankings[i]) {
+                                result.currentIndex = i;
+                                result.currentNum = rankings[i];
+                            }
+                        }
+                    }
+                    return result;
+                }
+                var getNextProposal = function(proposed) {
+                    var index = -1;
+                    for (var i = 0; i < proposed.length; i++) {
+                        if (proposed[i] === false) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    return index;
+                }
+                if (!$scope.isDone()) {
+                    for (var i = 0; i < $scope.boys.length; i++) {
+                        if ($scope.boys[i].engaged === -1) {
+                            var next = getNextProposal($scope.boys[i].proposed);
+                            $scope.steps.push($scope.boys[i].name + " makes a proposal to Girl " + $scope.boys[i].ranking[next]); 
+                            $scope.girls[$scope.boys[i].ranking[next]-1].proposals.push(i+1);
+                            $scope.boys[i].proposed[next] = true;
+                        }
+                    }
+                    for (var i = 0; i < $scope.girls.length; i++) {
+                        if ($scope.girls[i].proposals.length > 0) {
+                            var temp = getEngaged($scope.girls[i].ranking,$scope.girls[i].proposals,$scope.girls[i].engaged);
+                            if (temp.currentIndex === -1) {
+                                $scope.girls[i].engaged = temp.proposalNum;
+                                $scope.boys[temp.proposalNum-1].engaged = i+1;
+                                $scope.steps.push($scope.girls[i].name + " is now engaged to " + $scope.boys[temp.proposalNum-1].name);
+                                $scope.girls[i].proposals.splice(temp.proposalIndex,1);
+                            }
+                            else if (temp.currentIndex > temp.proposalIndex) {
+                                $scope.boys[temp.currentNum-1].engaged = -1;
+                                $scope.steps.push($scope.girls[i].name + " is now unengaged from " + $scope.boys[temp.currentNum-1].name);
+                                $scope.girls[i].engaged = temp.proposalNum;
+                                $scope.boys[temp.proposalNum-1].engaged = i+1;
+                                $scope.steps.push($scope.girls[i].name + " is now engaged to " + $scope.boys[temp.proposalNum-1].name);
+                                $scope.girls[i].proposals.splice(temp.proposalIndex,1);
+                            }
+                            while ($scope.girls[i].proposals.length > 0) {
+                                $scope.steps.push("Proposal from Boy " + $scope.girls[i].proposals.pop() + " to Girl " + (i+1) + " has been rejected.");
+                            }
+                        }
+                    }
+                }
+                $scope.getOutput();
+            }
+
+            $scope.solve = function() {
+                while(!$scope.isDone()) {
+                    $scope.nextStep();
+                }
+                $scope.steps.push("Matching Finished.");
+            }
+        }
+        </script>
+        <script type="text/ng-template" id="smp.html">
+        <h2>Stable Merriage Problem Demo</h2>
+        <div ng-controller="SMPCtrl" class="well example">
+            <div class="row center">
+                <h3> Control Panel </h3>
+                <input type="range" ng-model="maxNumber" min="1" max="15" value="5"/>
+                <div class="form-actions">
+                    <input class="btn btn-inverse" type="reset" ng-click="reset()"> 
+                    <input ng-class="btnCss" type="submit" value="Create SMP" ng-click="init()"/>
+                    <input class="btn" type="submit" value="Next Step" ng-click="nextStep()" ng-show="!isDone()"/>
+                    <input class="btn" type="submit" value="Solve SMP" ng-click="solve()" ng-show="!isDone()"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span2">
+                    <img rel="popover" data-content={{boysOutput}} data-original-title="<b>Boy Set</b>" data-placement="right" src="img\man.png"></img>
+                </div>
+                <div class="span7">
+                    <div class="well">
+                    <h4> Each Step Explanation </h4>
+                    <p ng-repeat="step in steps">
+                        {{step}}
+                    </p>
+                    </div>
+                </div>
+                <div class="span2 pull-right">
+                    <img rel="popover" data-content={{girlsOutput}} data-original-title="<b>Girl Set</b>" data-placement="left" src="img\woman.png"></img>
+                </div>
+            </div>
+        </div>
+        </script>
+        <script type="text/ng-template" id="smp.annotation">
+            {   "smp.html":
+                {
+                    "man.png":"Using a hover effect on man picture to show boys status",
+                    "woman.png":"Using a hover effect on woman picture to show girls status"
+                },
+                "smp.js":
+                {
+                    "getOutput":"format boys and girls status in table",
+                    "init":"create boys set and girls set and assign random preference",
+                    "reset":"clear all boys and girls set and reset explanation panal",
+                    "nextStep":"perform one round proposal and checking | TODO: reduce the function time complexity - currently about O(n^3)",
+                    "solve":"find the stable state",
+                    "isDone":"check whether stable state is reached"
+                }
+            }
+        </script>
+</body>
+</html>
